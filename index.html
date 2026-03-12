@@ -22,12 +22,15 @@
 
         <!-- Set the background colour of the document -->
         <style>
-            body {
+            html, body {
                 background: #0;
                 color: #cccccc;
-                margin: 0px;
-                padding: 0px;
-                border: 0px;
+                margin: 0;
+                padding: 0;
+                border: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
             }
 
             canvas {
@@ -35,10 +38,19 @@
                 -webkit-interpolation-mode: nearest-neighbor;
                 -ms-touch-action: none;
                 touch-action: none;
-                margin: 0px;
-                padding: 0px;
-                border: 0px;
+                margin: 0;
+                padding: 0;
+                border: 0;
             }
+
+            #gm4html5_div_id {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
             :-webkit-full-screen #canvas {
                 width: 100%;
                 height: 100%;
@@ -47,7 +59,7 @@
                 width: 100%;
                 height: 100%;
             }
-            
+
             /* Custom Runner Styles */
             div.gm4html5_div_class {
                 margin: 0px;
@@ -102,7 +114,7 @@
             
 
             <!-- Create the canvas element the game draws to -->
-            <canvas id="canvas" width="2816" height="2048" >
+            <canvas id="canvas" width="2816" height="2048">
                 
                 <p>Your browser doesn't support HTML5 canvas.</p>
             </canvas>
@@ -112,7 +124,7 @@
         </div>
 
         <!-- Run the game code -->
-        <script type="text/javascript" src="html5game/Space Teddy.js?cachebust=1656448469"></script>
+        <script type="text/javascript" src="html5game/Space Teddy.js?cachebust=1964010500"></script>
 
         <!-- Builtin injector for injecting runner path -->
         
@@ -124,6 +136,23 @@
 
         <!-- Custom BodyEnd code is injected here -->
         
+
+        <script>
+            (function() {
+                function resizeGameCanvas() {
+                    var c = document.getElementById('canvas');
+                    if (!c) return;
+                    var gw = c.width, gh = c.height;
+                    var ww = window.innerWidth, wh = window.innerHeight;
+                    var scale = Math.min(ww / gw, wh / gh);
+                    c.style.width = Math.floor(gw * scale) + 'px';
+                    c.style.height = Math.floor(gh * scale) + 'px';
+                }
+                window.addEventListener('resize', resizeGameCanvas);
+                window.addEventListener('load', resizeGameCanvas);
+                resizeGameCanvas();
+            })();
+        </script>
     </body>
 
     <!-- Custom PostBody code is injected here -->
